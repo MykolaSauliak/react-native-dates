@@ -272,7 +272,7 @@ export default class Dates extends Component {
   props: DatesType;
 
   render() {
-    const {monthStyle = {}} = this.props
+    const {monthStyle = {}, leftComponent, rightComponent} = this.props
     const previousMonth = () => {
       this.setState({ focusedMonth: this.state.focusedMonth.add(-1, 'M') });
     };
@@ -285,11 +285,11 @@ export default class Dates extends Component {
       <View style={styles.calendar}>
         <View style={styles.heading}>
           <TouchableOpacity onPress={previousMonth}>
-            <Text>{'<'}</Text>
+            {leftComponent}
           </TouchableOpacity>
           <Text style={monthStyle}>{this.state.focusedMonth.format('MMMM')}</Text>
           <TouchableOpacity onPress={nextMonth}>
-            <Text>{'>'}</Text>
+            {rightComponent}
           </TouchableOpacity>
         </View>
         <Month
